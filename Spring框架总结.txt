@@ -18,12 +18,27 @@ Spring注入
 注入方式：
 -- 设值注入
 IOC容器自动调用bean的set方法为bean属性赋值。
+<bean id="injectionService" class="main.java.com.lzg.ioc.injection.service.impl.InjectionServiceImpl">
+	<property name="injectionDao" ref="injectionDao"></property>
+</bean>
 
 -- 构造注入
 IOC容器自动调用bean构造方法为bean属性赋值。
+<bean id="injectionService" class="main.java.com.lzg.ioc.injection.service.impl.InjectionServiceImpl">
+    <constructor-arg name="injectionDao" ref="injectionDao"></constructor-arg>
+</bean>
 
 
 AOP中的
-pointcut切入点配置
-advice通知方式: before,after-returning,after,after-throwing,around,parameters
-introductions
+pointcut切入点
+
+advice通知
+方式: before,after-returning,after,after-throwing,around,parameters
+
+introductions引入父类
+<aop:declare-parents>
+<aop:declare-parents types-matching="main.java.com.lzg.schema.advice.biz.*+"
+	implement-interface="main.java.com.lzg.schema.advice.introductions.Fit"
+	default-impl="main.java.com.lzg.schema.advice.introductions.FitImpl"/>
+
+AspectJ

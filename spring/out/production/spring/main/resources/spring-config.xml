@@ -12,7 +12,7 @@
 
     <!--构造注入-->
     <bean id="injectionService" class="main.java.com.lzg.ioc.injection.service.impl.InjectionServiceImpl">
-    <constructor-arg name="injectionDao" ref="injectionDao"></constructor-arg>
+        <constructor-arg name="injectionDao" ref="injectionDao"></constructor-arg>
     </bean>
 
     <bean id="injectionDao" class="main.java.com.lzg.ioc.injection.dao.InjectionDao"></bean>
@@ -27,20 +27,24 @@
     <aop:config>
         <!--定义切面-->
         <aop:aspect id="myAspectAOP" ref="myAspect">
-            <!--定义切入点-->
-            <aop:pointcut id="myPointcut" expression="execution(* main.java.com.lzg.schema.advice.biz.*Biz.*(..))"/>
-            <!--前置通知-->
-            <aop:before method="before" pointcut-ref="myPointcut" />
-            <!--后置通知-->
-            <aop:after-returning method="afterReturning" pointcut-ref="myPointcut" />
-            <!--抛出异常后通知-->
-            <aop:after-throwing method="afterThroing" pointcut-ref="myPointcut"/>
-            <!--返回后(finally)通知-->
-            <aop:after method="after" pointcut-ref="myPointcut"/>
-            <!--环绕通知-->
-            <aop:around method="around" pointcut-ref="myPointcut"/>
+            <!--&lt;!&ndash;定义切入点&ndash;&gt;-->
+            <!--<aop:pointcut id="myPointcut" expression="execution(* main.java.com.lzg.schema.advice.biz.*Biz.*(..))"/>-->
+            <!--&lt;!&ndash;前置通知&ndash;&gt;-->
+            <!--<aop:before method="before" pointcut-ref="myPointcut" />-->
+            <!--&lt;!&ndash;后置通知&ndash;&gt;-->
+            <!--<aop:after-returning method="afterReturning" pointcut-ref="myPointcut" />-->
+            <!--&lt;!&ndash;抛出异常后通知&ndash;&gt;-->
+            <!--<aop:after-throwing method="afterThroing" pointcut-ref="myPointcut"/>-->
+            <!--&lt;!&ndash;返回后(finally)通知&ndash;&gt;-->
+            <!--<aop:after method="after" pointcut-ref="myPointcut"/>-->
+            <!--&lt;!&ndash;环绕通知&ndash;&gt;-->
+            <!--<aop:around method="around" pointcut-ref="myPointcut"/>-->
+            <!--&lt;!&ndash;带参数的环绕通知&ndash;&gt;-->
+            <!--<aop:around method="aroundInit" pointcut="execution(* main.java.com.lzg.schema.advice.biz.AspectBiz.init(String, int)) and args(bizName, times)" />-->
 
-            <aop:around method="aroundInit" pointcut="execution(* main.java.com.lzg.schema.advice.biz.AspectBiz.init(String, int)) and args(bizName, times)" />
+            <aop:declare-parents types-matching="main.java.com.lzg.schema.advice.biz.*+"
+                                 implement-interface="main.java.com.lzg.schema.advice.introductions.Fit"
+                                 default-impl="main.java.com.lzg.schema.advice.introductions.FitImpl"/>
         </aop:aspect>
     </aop:config>
 </beans>
