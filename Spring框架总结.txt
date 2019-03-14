@@ -41,4 +41,6 @@ introductions引入父类
 	implement-interface="main.java.com.lzg.schema.advice.introductions.Fit"
 	default-impl="main.java.com.lzg.schema.advice.introductions.FitImpl"/>
 
+
 AspectJ
+是一个面向切面的框架，它扩展了Java语言。AspectJ定义了AOP语法，所以它有一个专门的编译器用来生成遵守Java字节编码规范的Class文件。
